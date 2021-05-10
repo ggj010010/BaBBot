@@ -7,18 +7,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.babbot.coin.service.impl.TestServiceImpl;
+import com.babbot.coin.service.TestService;
 import com.babbot.coin.vo.TestVO;
 
 @RestController
 public class CoinController {
 	
 	@Autowired
-	TestServiceImpl testServiceImpl;
+	TestService testService;
 	
 	@GetMapping("/test/lists")
 	public @ResponseBody List<TestVO> getTestList(){
-		return testServiceImpl.getTestList();
+		return testService.getTestList();
 	}
 
 }
