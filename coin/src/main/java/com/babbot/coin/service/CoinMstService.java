@@ -13,7 +13,7 @@ public class CoinMstService {
 	
     @Autowired
     private CoinMstMapper coinDao;
-
+//Sival
     public List<CoinMst> searchCoinMst() {
         // TODO Auto-generated method stub
         return coinDao.selectListCoinMst();
