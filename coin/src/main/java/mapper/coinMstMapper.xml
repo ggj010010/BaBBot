@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CoinMstMapper">
+	<resultMap type="com.babbot.coin.vo.CoinMst" id="CoinMst">
+		<result property="coinSymbol" column="COIN_SYMBOL" />
+		<result property="coinNameKor" column="COIN_NAME_KOR" />
+		<result property="coinNameEng" column="COIN_NAME_ENG" />
+		<result property="createDt" column="CREATE_DT" />
+		<result property="createUserNo" column="CREATE_USER_NO" />
+		<result property="modifyDt" column="MODIFY_DT" />
+		<result property="modifyUserNo" column="MODIFY_USER_NO" />
+	</resultMap>
+
+	<select id="selectListCoinMst" resultMap="CoinMst">
+	    select
+	    	*
+	    from
+	    	COIN_MST
+	</select>
+
+	<select id="selectOneCoinMst" resultMap="CoinMst">
+	    select
+	    	*
+	    from
+	    	COIN_MST
+	    where
+	    	COIN_SYMBOL = #{coinSymbol}
+	</select>
+	
+	<insert id="insertCoinMst" parameterType="com.babbot.coin.vo.CoinMst">
+		insert into
+			COIN_MST(COIN_SYMBOL, COIN_NAME_KOR, COIN_NAME_ENG, CREATE_DT, CREATE_USER_NO)
+		values
+			(#{coinSymbol}, #{coinNameKor}, #{coinNameEng}, sysDate, 0)
+	</insert>
+	
+	<update id="updateCoinMst" parameterType="com.babbot.coin.vo.CoinMst">
+		update
+			COIN_MST
+		set
+		<if test="coinNameKor != null and coinNameKor != ''">
+			COIN_NAME_KOR = #{coinNameKor},
+		</if>
+		<if test="coinNameEng != null and coinNameEng != ''">
+			COIN_NAME_ENG = #{coinNameEng},
+		</if>
+			MODIFY_DT = sysDate,
+			MODIFY_USER_NO = 0
+		where
+			COIN_SYMBOL = #{coinSymbol}
+	</update>
+	
+	<delete id="deleteCoinMst">
+		delete from
+			COIN_MST
+		where
+			COIN_SYMBOL = #{coinSymbol}
+	</delete>
+</mapper>
