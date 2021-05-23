@@ -2,6 +2,8 @@ package com.babbot.coin.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +34,7 @@ public class CoinMstController {
 	}
 	
 	@PostMapping("/coin/coin-masters")
-	public int createCoinMst(@RequestBody CoinMst coinMst){
+	public int createCoinMst(@Valid @RequestBody CoinMst coinMst){
 		return coinMstService.createCoinMst(coinMst);
 	}
 	
